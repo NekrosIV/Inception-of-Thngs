@@ -23,7 +23,7 @@ until kubectl get nodes >/dev/null 2>&1; do
 done
 
 echo "K3s is ready. ✅"
-f
+
 echo "Deploying applications..."
 
 kubectl apply -f /vagrant/confs/app1.yaml
