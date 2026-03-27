@@ -3,8 +3,10 @@ kind: Ingress
 metadata:
   name: argocd-ingress
   namespace: argocd
-  # annotations:
-  #   traefik.ingress.kubernetes.io/ssl-redirect: "false"
+  annotations:
+    traefik.ingress.kubernetes.io/router.tls: "true"
+    traefik.ingress.kubernetes.io/service.serversscheme: https
+    traefik.ingress.kubernetes.io/service.serverstransport: argocd-argocd-backend-tls@kubernetescrd
 spec:
   ingressClassName: traefik
   rules:
