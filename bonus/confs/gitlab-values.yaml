@@ -1,0 +1,102 @@
+global:
+  edition: ce
+
+  hosts:
+    domain: local.com
+    https: false
+    gitlab:
+      name: gitlab.local.com
+      https: false
+    ssh: gitlab.local.com
+
+  ingress:
+    class: traefik
+    configureCertmanager: false
+    tls:
+      enabled: false
+
+  kas:
+    enabled: false
+
+  registry:
+    enabled: false
+
+  minio:
+    enabled: true
+
+  appConfig:
+    enableUsagePing: false
+
+installCertmanager: false
+
+nginx-ingress:
+  enabled: false
+
+prometheus:
+  install: false
+
+gitlab-runner:
+  install: false
+
+registry:
+  enabled: false
+
+postgresql:
+  install: true
+
+redis:
+  install: true
+
+gitlab:
+  webservice:
+    replicaCount: 1
+    minReplicas: 1
+    maxReplicas: 1
+    workerProcesses: 1
+    resources:
+      requests:
+        cpu: "200m"
+        memory: "1Gi"
+      limits:
+        cpu: "500m"
+        memory: "2Gi"
+
+  sidekiq:
+    replicaCount: 1
+    minReplicas: 1
+    maxReplicas: 1
+    resources:
+      requests:
+        cpu: "200m"
+        memory: "1Gi"
+      limits:
+        cpu: "500m"
+        memory: "2Gi"
+
+  gitaly:
+    replicaCount: 1
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "256Mi"
+      limits:
+        cpu: "300m"
+        memory: "512Mi"
+
+  gitlab-shell:
+    enabled: false
+
+  kas:
+    enabled: false
+
+  mailroom:
+    enabled: false
+
+  spamcheck:
+    enabled: false
+
+  toolbox:
+    replicas: 1
+
+  migrations:
+    enabled: true
