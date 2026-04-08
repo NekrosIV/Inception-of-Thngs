@@ -7,7 +7,7 @@ YELLOW="\033[0;33m"
 BLUE="\033[0;34m"
 RESET="\033[0m"
 
-CLUSTER_NAME="iot"
+CLUSTER_NAME="iot2"
 ARGOCD_NAMESPACE="argocd"
 GITLAB_NAMESPACE="gitlab"
 DEV_NAMESPACE="dev"
@@ -63,10 +63,7 @@ if k3d cluster list -o json 2>/dev/null | grep -q "\"name\":\"${CLUSTER_NAME}\""
 else
     log "Creating cluster: ${CLUSTER_NAME}"
     k3d cluster create "${CLUSTER_NAME}" \
-        -p "80:80@loadbalancer" \
-        -p "443:443@loadbalancer" \
-        -p "2222:22@loadbalancer" \
-        -p "8080:8080@loadbalancer"
+        -p "80:80@loadbalancer"
 fi
 
 log "Checking cluster access"
@@ -169,4 +166,3 @@ log "Argo CD password  : ${ARGOCD_PASSWORD:-unavailable}"
 log "GitLab user       : root"
 log "GitLab password   : ${GITLAB_PASSWORD}"
 log "Check ingress with: kubectl get ingress -A"
-log "Next step         : ./scripts/bootstrap_gitlab_argocd.sh"

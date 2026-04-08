@@ -8,7 +8,7 @@ BLUE="\033[0;34m"
 RESET="\033[0m"
 
 NAMESPACE="argocd"
-CLUSTER_NAME="iot"
+CLUSTER_NAME="iot2"
 
 log() {
     echo -e "${BLUE}[INFO]${RESET} $*"
@@ -46,8 +46,7 @@ if k3d cluster list -o json 2>/dev/null | grep -q "\"name\":\"${CLUSTER_NAME}\""
 else
     log "Creating cluster: ${CLUSTER_NAME}"
     k3d cluster create "${CLUSTER_NAME}" \
-         -p "443:443@loadbalancer" \
-         -p "80:80@loadbalancer"
+         -p "443:443@loadbalancer" 
 fi
 
 log "Checking cluster access"
